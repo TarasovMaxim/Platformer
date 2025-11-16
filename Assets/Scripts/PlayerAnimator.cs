@@ -5,6 +5,8 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Inputer _inputer;
     [SerializeField] private Animator _animator;
 
+    private static readonly int IsRunningHash = Animator.StringToHash("isRunning");
+
     private void OnEnable()
     {
         _inputer.Move += Move;
@@ -17,10 +19,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Move(float speed)
     {
-
-        if (Mathf.Abs(speed) != 0)
-            _animator.SetBool("isRunning", true);
-        else
-            _animator.SetBool("isRunning", false);
+        _animator.SetBool(IsRunningHash, Mathf.Abs(speed) > 0);
     }
 }

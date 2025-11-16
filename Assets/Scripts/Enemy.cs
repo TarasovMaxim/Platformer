@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private Rigidbody2D _rigidBody;
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
@@ -16,7 +22,8 @@ public class Enemy : MonoBehaviour
 
         while (enabled)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(delta, GetComponent<Rigidbody2D>().velocity.y);
+            _rigidBody.velocity = new Vector2(delta, _rigidBody.velocity.y);
+
             delta = -delta;
             yield return new WaitForSeconds(delay);
         }

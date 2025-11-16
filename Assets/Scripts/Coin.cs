@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] private GameObject _coinPrefab;
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Player player = collider.GetComponent<Player>();
+        CoinsCollector coinsCollector = collider.GetComponent<CoinsCollector>();
 
-        if (player != null)
+        if (coinsCollector != null)
         {
-            player.CollectCoin();
-            Destroy(gameObject);
+            coinsCollector.CollectCoin();
+            Destroy(_coinPrefab);
         }
     }
 }

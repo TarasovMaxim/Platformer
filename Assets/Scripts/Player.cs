@@ -4,9 +4,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Inputer _inputer;
     [SerializeField] private float _speed = 5.5f;
+    [SerializeField] private CoinsCollector _coinsCollector;
     private bool _isFaceRight = true;
-    private bool _CanJump = true;
-    public int CoinsCollected { get; private set; }
+    private bool _ñanJump = true;
 
 private void OnEnable()
     {
@@ -22,18 +22,14 @@ private void OnEnable()
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        _CanJump = true;
+        _ñanJump = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        _CanJump= false;
+        _ñanJump= false;
     }
 
-    public void CollectCoin()
-    {
-        CoinsCollected++;
-    }
 
     private void Move(float horizontal)
     {
@@ -61,7 +57,7 @@ private void OnEnable()
 
     private void Jump()
     {
-        if ( _CanJump)
+        if ( _ñanJump)
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8f, ForceMode2D.Impulse);
         }
