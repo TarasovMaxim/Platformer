@@ -15,10 +15,10 @@ public class CoinSpawnPoint : MonoBehaviour
 
     private IEnumerator SpawnLoop()
     {
+        var delay = new WaitForSeconds(_respawnDelay);
+
         while (enabled)
         {
-            var delay = new WaitForSeconds(_respawnDelay);
-
             if (_currentCoin == null)
             {
                 _currentCoin = Instantiate(_coinPrefab, transform.position, Quaternion.identity);

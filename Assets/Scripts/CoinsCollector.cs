@@ -4,8 +4,14 @@ public class CoinsCollector : MonoBehaviour
 {
     private int _coins;
 
-    public void CollectCoin()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        _coins++;
+        Coin coin = collider.GetComponent<Coin>();
+
+        if (coin != null)
+        {
+            _coins++;
+            Destroy(coin.gameObject);
+        }
     }
 }

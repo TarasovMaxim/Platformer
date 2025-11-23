@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private Inputer _inputer;
     [SerializeField] private float _speed = 5.5f;
     [SerializeField] private CoinsCollector _coinsCollector;
+    [SerializeField] private Flipper _flipper;
     private bool _ñanJump = true;
     private bool _isFaceRight = true;
     private Rigidbody2D _rigidbody2D;
@@ -36,29 +38,15 @@ public class Player : MonoBehaviour
         _ñanJump = false;
     }
 
-
     private void Move(float horizontal)
     {
-        Flip(horizontal);
-        _rigidbody2D.velocity = new Vector2(horizontal * _speed, _rigidbody2D.velocity.y);
-    }
-
-    private void Flip(float horizontal)
-    {
-        if (horizontal > 0 && _isFaceRight == false)
-        {
+        if (horizontal > 0) 
             _isFaceRight = true;
-            Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x);
-            transform.localScale = scale;
-        }
-        else if (horizontal < 0 && _isFaceRight)
-        {
+        else if (horizontal < 0) 
             _isFaceRight = false;
-            Vector3 scale = transform.localScale;
-            scale.x = -Mathf.Abs(scale.x);
-            transform.localScale = scale;
-        }
+
+        _flipper.Flip(_isFaceRight);
+        _rigidbody2D.velocity = new Vector2(horizontal * _speed, _rigidbody2D.velocity.y);
     }
 
     private void Jump()

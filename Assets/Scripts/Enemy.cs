@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D _rigidBody;
+    private Flipper _flipper;
     public bool IsFaceRight { get; private set; } = true;
 
     private void Awake()
