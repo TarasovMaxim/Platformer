@@ -3,10 +3,10 @@ using System.Collections;
 
 public class CoinSpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private Coin _coinPrefab;
     [SerializeField] private float _respawnDelay = 3f;
 
-    private GameObject _currentCoin;
+    private Coin _currentCoin;
 
     private void Start()
     {
@@ -17,10 +17,12 @@ public class CoinSpawnPoint : MonoBehaviour
     {
         while (enabled)
         {
+            var delay = new WaitForSeconds(_respawnDelay);
+
             if (_currentCoin == null)
             {
                 _currentCoin = Instantiate(_coinPrefab, transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(_respawnDelay);
+                yield return delay;
             }
 
             yield return null;
